@@ -21,7 +21,7 @@ volumes:
 monitor:
     notify: appzops@cloudbourne.co      
 properties:
-    revision : 27
+    revision : 28
     MYSQL_USER : wordpress
     MYSQL_DATABASE : wordpress
     MYSQL_PASSWORD:
