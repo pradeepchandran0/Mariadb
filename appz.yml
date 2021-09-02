@@ -1,0 +1,30 @@
+app:
+    name: MariaDB
+    code: MARIADB
+    notify: appzdev@cloudbourne.co
+build:
+    version: 10.4
+    env: DEV
+    build_file: none
+    output_files: output/*.zip
+    image_template: mariadb-10.4
+    image_name: myco/mariadb
+deploy:
+    context: myco/DEV
+    replicas: 1
+    port:
+    - 3306
+volumes:
+  - claim: mariadb-data
+    mount: /appz/data
+    name: data
+monitor:
+    notify: appzops@cloudbourne.co      
+properties:
+    revision : 27
+    MYSQL_USER : wordpress
+    MYSQL_DATABASE : wordpress
+    MYSQL_PASSWORD:
+       vault: MYSQL_PASSWORD
+    MYSQL_ROOT_PASSWORD:
+       vault: MYSQL_ROOT_PASSWORD_KEY
